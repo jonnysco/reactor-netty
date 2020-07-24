@@ -295,7 +295,7 @@ public class TcpResources implements ConnectionProvider, LoopResources {
 			BiFunction<LoopResources, ConnectionProvider, T> onNew) {
 		if (previous == null) {
 			loops = loops == null ? LoopResources.create("reactor-" + name) : loops;
-			provider = provider == null ? ConnectionProvider.create(name, 500) : provider;
+			provider = provider == null ? ConnectionProvider.create(name, Math.max(500, DEFAULT_POOL_MAX_CONNECTIONS)) : provider;
 		}
 		else {
 			loops = loops == null ? previous.defaultLoops : loops;
